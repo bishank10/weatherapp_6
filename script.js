@@ -1,13 +1,3 @@
-// 1. The API Docs give you a way of doing a 16-day forecast for any area, but if you look at the docs closely enough you'll see you can specify the exact number of days you want the forecast for. so make a 
-// 2. Break this app into key sections of work. I recommend something like this:
-//   a. Make sure you can retrieve data via the API for a city, both for the current day and a multi-day forecast (these may need to be two separate API calls)
-//   b. Determine how you'll manage the list of cities to the left. When a user enters a city name, after the response is received from OpenWeather, the city name should be added to the list. Be sure to prevent duplicates. You'll need to store the city list in local storage as well, so get that process figured out.
-//   c. When the user clicks on a city name, the API query should run again, just as if the user had typed the city in at the top. So maybe the city-typing and the city-clicking should both go to the same function for API lookup... ? 
-//   d. Each block if the 5-day forecast is the same thing, just with different data. So think about that.
-// 3. Each of the sections above can be broken up into smaller sections as you see fit for work. Break things down as much as you need to. PSEUDOCODE!
-// 4. You can always create your functions in advance and build your logic flow before you have the functionality finished. Use comments to help remind you what each function is supposed to do.
-// 5. Console.logs are a great way to make sure you're working with the correct data at any point.
-
 // create the variables and body for the page
 
 $(document).ready(function(){
@@ -63,7 +53,6 @@ $(document).ready(function(){
     rightSide.append(forecastSec);
     mainDiv.append(leftSide);
     mainDiv.append(rightSide);
-    
     $(".container").append(mainDiv);
     
 
@@ -83,7 +72,7 @@ $(document).ready(function(){
     $.ajax({
         url: queryURL,
         method: "GET"
-      }).then(function(response, ) {
+      }).then(function(response) {
         console.log(response);
         // searchedCity.val(cityName);
         temperature.text("Temperature: " + response.main.temp);
@@ -101,9 +90,40 @@ $(document).ready(function(){
         url: queryURL2,
         method: "GET"
       }).then(function(response) {
-        var forecastArray =[{"humidity ": response.list[01].main.humidity}]
-        console.log(forecastArray[0]);
-        // day
+        console.log(response);
+        var temp1 = (response.list[6].main.temp);
+        var humidity1 = response.list[6].main.humidity
+        var farenHeit1 = parseInt((temp1 - 273.15) * 1.80 + 32);
+        $("#temp-one").text("Temperature : " + farenHeit1);
+        $("#hum-one").text("Humidity : " + humidity1);
+
+        var temp2 = (response.list[14].main.temp);
+        var humidity2 = response.list[14].main.humidity
+        var farenHeit2 = parseInt((temp2 - 273.15) * 1.80 + 32);
+        $("#temp-two").text("Temperature : " + farenHeit2);
+        $("#hum-two").text("Humidity : " + humidity2);
+
+
+        var temp3 = (response.list[22].main.temp);
+        var humidity3 = response.list[22].main.humidity
+        var farenHeit3 = parseInt((temp3 - 273.15) * 1.80 + 32);
+        $("#temp-three").text("Temperature : " + farenHeit3);
+        $("#hum-three").text("Humidity : " + humidity3);
+
+
+        var temp4 = (response.list[30].main.temp);
+        var humidity4 = response.list[30].main.humidity
+        var farenHeit4 = parseInt((temp4 - 273.15) * 1.80 + 32);
+        $("#temp-four").text("Temperature : " + farenHeit4);
+        $("#hum-four").text("Humidity : " + humidity4);
+
+
+        var temp5 = (response.list[38].main.temp);
+        var humidity5 = response.list[38].main.humidity
+        var farenHeit5 = parseInt((temp5 - 273.15) * 1.80 + 32);
+        $("#temp-five").text("Temperature : " + farenHeit5);
+        $("#hum-five").text("Humidity : " + humidity5);
+        
       
        
 
